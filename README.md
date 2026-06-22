@@ -32,9 +32,11 @@ git --version
 
 ### 2. Install Ollama
 
-Download the Windows installer from https://ollama.com/download/windows and run it.
+```powershell
+irm https://ollama.com/install.ps1 | iex
+```
 
-Verify in PowerShell:
+Open a **new** PowerShell window after installation, then verify:
 
 ```powershell
 ollama --version
