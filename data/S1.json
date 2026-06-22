@@ -1,0 +1,7 @@
+{
+  "scenario_id": "S1",
+  "student_text": "I love coding and building apps. I'm really into machine learning and statistical analysis of large datasets.",
+  "allowed_departments": ["Computer Science", "UX/UI Design", "Data Science", "Business Administration"],
+  "max_suggestions": 2,
+  "gt_departments": ["Computer Science", "Data Science"]
+}

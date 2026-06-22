@@ -1,0 +1,7 @@
+{
+  "scenario_id": "S3",
+  "student_text": "I want to lead teams and run a company someday. I'm interested in market strategy, finance, and how businesses grow.",
+  "allowed_departments": ["Computer Science", "UX/UI Design", "Data Science", "Business Administration"],
+  "max_suggestions": 1,
+  "gt_departments": ["Business Administration"]
+}

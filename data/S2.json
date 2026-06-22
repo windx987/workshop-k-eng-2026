@@ -1,0 +1,7 @@
+{
+  "scenario_id": "S2",
+  "student_text": "I'm passionate about making apps look beautiful and easy to use. I love doing user research and usability testing to understand how people interact with interfaces.",
+  "allowed_departments": ["Computer Science", "UX/UI Design", "Data Science", "Business Administration"],
+  "max_suggestions": 2,
+  "gt_departments": ["UX/UI Design"]
+}
