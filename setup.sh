@@ -39,7 +39,8 @@ step_find_python() {
 step_check_ollama() {
     step "Checking Ollama"
     command -v ollama &>/dev/null \
-        || fail "Ollama not found. Download from https://ollama.com/download/windows and re-run this script."
+        || fail "Ollama not found. Install it first:
+       powershell.exe -Command \"irm https://ollama.com/install.ps1 | iex\""
     ok "Ollama $(ollama --version 2>&1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')"
 }
 
@@ -121,4 +122,4 @@ main() {
     echo "└──────────────────────────────────────────────────┘"
 }
 
-[[ "${BASH_SOURCE[0]}" == "$0" ]] && main
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then main; fi
