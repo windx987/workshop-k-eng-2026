@@ -22,9 +22,11 @@ Once the three prerequisites below are installed, `setup.sh` handles everything 
 
 Git Bash is required to run `setup.sh` and `script.sh`.
 
-Download the installer from https://git-scm.com/download/win and run it with default options.
+```powershell
+winget install Git.Git --silent --accept-source-agreements --accept-package-agreements
+```
 
-Verify in PowerShell:
+Open a **new** PowerShell window after installation, then verify:
 
 ```powershell
 git --version

@@ -17,9 +17,11 @@ data/*.json  →  main.py  →  Ollama (gemma4:12b)  →  eval.py  →  score (0
 
 ### 1. Install Git for Windows
 
-Download and install from https://git-scm.com/download/win (use default options).
+```powershell
+winget install Git.Git --silent --accept-source-agreements --accept-package-agreements
+```
 
-Verify in PowerShell:
+Open a **new** PowerShell window after installation, then verify:
 
 ```powershell
 git --version
