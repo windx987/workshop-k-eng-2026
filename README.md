@@ -13,9 +13,11 @@ data/*.json  →  main.py  →  Ollama (gemma4:12b)  →  eval.py  →  score (0
 - **Ollama**
 - **Python 3.12+**
 
-## Getting Started
+## Installation
 
 ### 1. Install Git for Windows
+
+Git Bash is required to run `setup.sh` and `script.sh`.
 
 ```powershell
 winget install Git.Git --silent --accept-source-agreements --accept-package-agreements
@@ -25,11 +27,18 @@ Open a **new** PowerShell window after installation, then verify:
 
 ```powershell
 git --version
+& "C:\Program Files\Git\bin\bash.exe" --version
 ```
 
 ### 2. Install Ollama
 
-Download and install from https://ollama.com/download/windows.
+Download the Windows installer from https://ollama.com/download/windows and run it.
+
+Verify in PowerShell:
+
+```powershell
+ollama --version
+```
 
 ### 3. Install Python 3.12
 
@@ -41,7 +50,17 @@ Open a **new** PowerShell window after installation, then verify:
 
 ```powershell
 python --version
+# Expected: Python 3.12.x
 ```
+
+If `python` is not found, add these to your user PATH via **Settings → System → Advanced system settings → Environment Variables → Path (User)**:
+
+```
+C:\Users\<you>\AppData\Local\Programs\Python\Python312
+C:\Users\<you>\AppData\Local\Programs\Python\Python312\Scripts
+```
+
+Then open a new terminal and re-check.
 
 ### 4. Clone and set up
 
@@ -54,12 +73,18 @@ cd workshop-k-eng-2026
 bash setup.sh
 ```
 
+Or from PowerShell:
+
+```powershell
+& "C:\Program Files\Git\bin\bash.exe" -c "cd 'C:\Users\<you>\Developer\workshop-k-eng-2026' && bash setup.sh"
+```
+
 `setup.sh` will automatically:
 - Start the Ollama server
 - Pull `gemma4:12b` (~7.6 GB) if not already downloaded
 - Create a Python virtual environment (`.venv/`)
-- Install dependencies from `requirements.txt`
-- Run a smoke test to confirm everything works
+- Install all Python dependencies from `requirements.txt`
+- Run a smoke test to confirm the pipeline works
 
 A successful run ends with:
 
@@ -111,3 +136,26 @@ Drop a `.json` file into `data/` — the pipeline picks it up automatically on t
 ```
 
 See `MANUAL.md` for full details on test case format and scoring.
+
+## Troubleshooting
+
+**`[FAIL] Python not found`**
+Python is not on PATH. Complete step 3 and open a new terminal before re-running.
+
+**`[FAIL] Ollama not found`**
+Complete step 2 then re-run `setup.sh`.
+
+**`[FAIL] Ollama server did not respond`**
+Start Ollama manually in PowerShell, then re-run the script:
+```powershell
+Start-Process "ollama" -ArgumentList "serve" -WindowStyle Hidden
+```
+
+**`gemma4:12b` pull takes too long or fails**
+The model is 7.6 GB. If the download fails mid-way, re-running `bash setup.sh` resumes it — Ollama caches partial downloads.
+
+**PowerShell blocks `.venv\Scripts\Activate.ps1`**
+Run this once to allow local scripts:
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
