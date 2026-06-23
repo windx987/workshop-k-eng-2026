@@ -31,37 +31,61 @@ ollama --version
 
 **Default** — download from Ollama registry:
 
-```bash
-ollama serve &
+```powershell
 ollama pull gemma4:12b
+ollama serve
 ```
 
 The model is ~7.6 GB. If the download fails mid-way, re-run `ollama pull gemma4:12b` — Ollama resumes partial downloads.
 
 **Local** — first, copy your Ollama models into the project:
 
-```bash
-cp -r ~/.ollama/models ./models
+```powershell
+Copy-Item -Recurse "$env:USERPROFILE\.ollama\models" .\models
 ```
 
 Then serve from the local directory:
 
-```bash
-ollama serve --models ./models &
+```powershell
+$env:OLLAMA_MODELS = ".\models"
+ollama serve
 ```
 
 Or point to a different models directory:
-
-```bash
-ollama serve --models /path/to/your/models &
-```
-
-Or set the model directory permanently via environment variable before starting:
 
 ```powershell
 $env:OLLAMA_MODELS = "C:\Users\<you>\models"
 ollama serve
 ```
+
+### Troubleshooting
+
+#### `ollama serve` fails with "bind: Only one usage of each socket address"
+
+Another Ollama instance is already using port 11434. Stop all Ollama processes first:
+
+```powershell
+Stop-Process -Name "ollama*" -Force
+```
+
+Then retry `ollama serve`.
+
+### Verify the model
+
+Open a new terminal (keep `ollama serve` running) and start a chat:
+
+```powershell
+ollama run gemma4:12b
+```
+
+```
+>>> hello
+Hello! How can I help you today? 😊
+
+>>> /bye
+```
+
+If the model responds, the local LLM is ready.
 
 ## Installation
 
@@ -77,17 +101,24 @@ Open a **new** PowerShell window after installation, then verify:
 
 ```powershell
 git --version
-& "C:\Program Files\Git\bin\bash.exe" --version
 ```
+
+Set up a `gbash` alias for Git Bash:
+
+```powershell
+Set-Alias gbash "C:\Program Files\Git\bin\bash.exe"
+gbash --version
+```
+
+> **Note:** This alias only lasts for the current terminal session. Run `Set-Alias` again if you open a new PowerShell window.
 
 ### 2. Clone the repository
 
-Open **Git Bash** (search "Git Bash" in the Start menu):
+Open **PowerShell** or **Git Bash** (search in the Start menu):
 
-```bash
-cd /c/Users/$USER/Developer
-git clone git@github.com:windx987/workshop-k-eng-2026.git
-cd workshop-k-eng-2026
+```powershell
+git clone https://github.com/windx987/workshop-k-eng-2026.git
+cd ./workshop-k-eng-2026
 ```
 
 ### 3. Install Python 3.12 (optional)
@@ -113,8 +144,8 @@ python --version
 If `python` is still not found, add these to your user PATH via **Settings → System → Advanced system settings → Environment Variables → Path (User)**:
 
 ```
-C:\Users\<you>\AppData\Local\Programs\Python\Python312
-C:\Users\<you>\AppData\Local\Programs\Python\Python312\Scripts
+%USERPROFILE%\AppData\Local\Programs\Python\Python312
+%USERPROFILE%\AppData\Local\Programs\Python\Python312\Scripts
 ```
 
 Then open a new terminal and re-check.
@@ -138,8 +169,8 @@ You should see JSON output with `recommended_departments`. If so, the setup is c
 
 Run the full evaluation pipeline:
 
-```bash
-bash script.sh
+```powershell
+gbash script.sh
 ```
 
 Run a single test case:
@@ -147,13 +178,13 @@ Run a single test case:
 ```bash
 .venv/Scripts/python.exe main.py data/S1.json
 ```
-
+<!-- 
 Evaluate a response:
 
 ```bash
 .venv/Scripts/python.exe main.py data/S1.json > /tmp/response.json
 .venv/Scripts/python.exe eval.py data/S1.json /tmp/response.json
-```
+``` -->
 
 ## Adding Test Cases
 
