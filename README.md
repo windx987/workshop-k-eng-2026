@@ -185,10 +185,3 @@ If PowerShell blocks this, run once:
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
-## Re-running setup after pulling changes
-
-```bash
-bash setup.sh
-```
-
-`setup.sh` is idempotent — safe to re-run. It skips steps that are already complete.
