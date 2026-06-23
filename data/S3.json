@@ -1,7 +1,7 @@
 {
-  "scenario_id": "S3",
-  "student_text": "I want to lead teams and run a company someday. I'm interested in market strategy, finance, and how businesses grow.",
-  "allowed_departments": ["Computer Science", "UX/UI Design", "Data Science", "Business Administration"],
-  "max_suggestions": 1,
-  "gt_departments": ["Business Administration"]
+  "scenario_id": "P03",
+  "student_text": "พวกพี่ๆ ครับ เวลาเล่นเกมแนววางแผนการรบหรือเกมฟุตบอล (FM) ผมชอบมานั่งดู Stats นักเตะ วิเคราะห์แผนการเล่น เปิด Excel พลอตเกราฟดูดาต้าเล่นๆ วันหยุดก็ชอบดูช่อง YouTube ที่วิเคราะห์ข้อมูลลึกๆ หรือพวกการทำงานของอัลกอริทึม แต่ผมโคตรเกลียดวิชาประวัติศาสตร์กับสังคมเลย ท่องจำไม่ไหว แต่ผมชอบเลขกับสถิตินะ สนุกดี อ้อ... ผมไม่ชอบงานที่ต้องไปพูดโน้มน้าวใจคนหรือขายของ แต่อยากรับบทเป็นคนหลังบ้าน นั่งวิเคราะห์ตัวเลข ทำรายงานสรุปผลอยู่หน้าคอมคนเดียว คณะไหนดีครับ",
+  "allowed_departments": ["Data Science", "Applied Statistics", "Computer Science", "Marketing", "History"],
+  "max_suggestions": 3,
+  "gt_departments": ["Data Science", "Applied Statistics", "Computer Science"]
 }

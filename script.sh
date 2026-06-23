@@ -2,10 +2,28 @@
 set -euo pipefail
 shopt -s nullglob
 
+export PYTHONIOENCODING=utf-8
+export PYTHONUTF8=1
+
 PYTHON=".venv/Scripts/python.exe"
 DATA_DIR="data"
+PROMPT_FILE="system_prompt.txt"
 SCORES=()
 
+echo "=== Evaluating Prompt Design (LLM-as-a-judge) ==="
+if [ -f "$PROMPT_FILE" ]; then
+    prompt_eval=$("$PYTHON" prompt_judge.py "$PROMPT_FILE")
+    echo "$prompt_eval"
+    
+    # ดึงคะแนน Total Score ออกมาโชว์
+    prompt_score=$(echo "$prompt_eval" | "$PYTHON" -c "import sys,json; print(json.load(sys.stdin).get('total_score', 0))")
+    echo ">> Prompt Quality Score: $prompt_score / 100"
+else
+    echo "Warning: $PROMPT_FILE not found. Skipping prompt evaluation."
+fi
+echo "---------------------------------------------------"
+
+echo ""
 echo "=== LLM Evaluation Run ==="
 
 for case_file in "$DATA_DIR"/*.json; do
