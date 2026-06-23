@@ -1,5 +1,7 @@
 .venv/
+models/
 __pycache__/
 *.pyc
 /tmp/
 CLAUDE.md
+PROJECT.md
