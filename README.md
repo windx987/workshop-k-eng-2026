@@ -38,7 +38,19 @@ ollama pull gemma4:12b
 
 The model is ~7.6 GB. If the download fails mid-way, re-run `ollama pull gemma4:12b` — Ollama resumes partial downloads.
 
-**Local** — use a pre-downloaded models directory:
+**Local** — first, copy your Ollama models into the project:
+
+```bash
+cp -r ~/.ollama/models ./models
+```
+
+Then serve from the local directory:
+
+```bash
+ollama serve --models ./models &
+```
+
+Or point to a different models directory:
 
 ```bash
 ollama serve --models /path/to/your/models &
