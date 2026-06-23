@@ -159,10 +159,24 @@ Drop a `.json` file into `data/` — the pipeline picks it up automatically on t
 
 See `MANUAL.md` for full details on test case format and scoring.
 
-## Troubleshooting
+## Activating the venv (optional)
 
-**PowerShell blocks `.venv\Scripts\Activate.ps1`**
-Run this once to allow local scripts:
+Only needed if you want to call `python` without the full path:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+If PowerShell blocks this, run once:
+
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
+
+## Re-running setup after pulling changes
+
+```bash
+bash setup.sh
+```
+
+`setup.sh` is idempotent — safe to re-run. It skips steps that are already complete.

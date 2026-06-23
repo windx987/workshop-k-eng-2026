@@ -6,37 +6,16 @@ User manual for the Prompt Engineering Evaluation Framework.
 
 ## Overview
 
-This system evaluates how well a local LLM (Gemma 4 12B via Ollama) recommends university departments based on a student's description. You write test cases, run the pipeline, and get a score from 0.0 to 1.0.
+This system evaluates how well a local LLM recommends university departments based on a student's description. You write test cases, run the pipeline, and get a score from 0.0 to 1.0.
 
-```
-data/*.json  →  main.py  →  Ollama (gemma4:12b)  →  eval.py  →  score
-```
-
----
-
-## Starting Ollama
-
-Ollama must be running before executing any script. Run this once per session:
-
-```powershell
-Start-Process "ollama" -ArgumentList "serve" -WindowStyle Hidden
-```
-
-Verify it is running:
-
-```powershell
-ollama list
-# Should show: gemma4:12b
-```
+For Ollama installation and server setup, see the **Local LLM** section in `README.md`.
 
 ---
 
 ## Running the full pipeline
 
-From the project root in PowerShell:
-
-```powershell
-& "C:\Program Files\Git\bin\bash.exe" script.sh
+```bash
+bash script.sh
 ```
 
 Example output:
@@ -64,8 +43,8 @@ The pipeline runs every `.json` file in `data/` alphabetically.
 
 **Step 1 — Get the LLM response:**
 
-```powershell
-.\.venv\Scripts\python.exe main.py data\S1.json
+```bash
+.venv/Scripts/python.exe main.py data/S1.json
 ```
 
 Output:
@@ -78,9 +57,9 @@ Output:
 
 Save the output to a file first, then evaluate:
 
-```powershell
-.\.venv\Scripts\python.exe main.py data\S1.json > response.json
-.\.venv\Scripts\python.exe eval.py data\S1.json response.json
+```bash
+.venv/Scripts/python.exe main.py data/S1.json > response.json
+.venv/Scripts/python.exe eval.py data/S1.json response.json
 ```
 
 Output:
@@ -162,7 +141,7 @@ The model is set at the top of `main.py`:
 MODEL = "gemma4:12b"
 ```
 
-To switch models, change this value to any model available in `ollama list`. The model must already be pulled — the system does not download models automatically.
+To switch models, change this value to any model available in `ollama list`.
 
 ---
 
@@ -170,7 +149,7 @@ To switch models, change this value to any model available in `ollama list`. The
 
 | File | Purpose |
 |---|---|
-| `main.py` | Sends a test case to Ollama, returns LLM response JSON |
+| `main.py` | Sends a test case to the LLM, returns response JSON |
 | `eval.py` | Compares LLM response against ground truth, returns score JSON |
 | `script.sh` | Runs all cases in `data/`, prints per-case results and final score |
 | `data/*.json` | Test cases — add new ones here |
