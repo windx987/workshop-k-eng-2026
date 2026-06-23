@@ -36,48 +36,6 @@ step_find_python() {
     ok "$("$PYTHON" --version)"
 }
 
-step_check_ollama() {
-    step "Checking Ollama"
-    command -v ollama &>/dev/null \
-        || fail "Ollama not found. Install it first:
-       powershell.exe -Command \"irm https://ollama.com/install.ps1 | iex\""
-    ok "Ollama $(ollama --version 2>&1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')"
-}
-
-step_start_server() {
-    step "Starting Ollama server"
-    if ollama list &>/dev/null 2>&1; then
-        ok "Server already running"
-    else
-        powershell.exe -Command "Start-Process ollama -ArgumentList serve -WindowStyle Hidden" &>/dev/null
-        echo "  Waiting for server to be ready..."
-        ready=false
-        for i in {1..15}; do
-            sleep 1
-            if ollama list &>/dev/null 2>&1; then
-                ready=true
-                break
-            fi
-        done
-        if [ "$ready" = false ]; then
-            fail "Ollama server did not respond. Try starting it manually:
-       Start-Process \"ollama\" -ArgumentList \"serve\" -WindowStyle Hidden"
-        fi
-        ok "Server started"
-    fi
-}
-
-step_check_model() {
-    step "Checking model gemma4:12b"
-    if ollama list | grep -q "gemma4:12b"; then
-        ok "gemma4:12b available"
-    else
-        echo "  Not found locally — pulling now (~7.6 GB, this may take several minutes)..."
-        ollama pull gemma4:12b
-        ok "gemma4:12b downloaded"
-    fi
-}
-
 step_setup_venv() {
     step "Python virtual environment"
     if [ ! -d ".venv" ]; then
@@ -104,9 +62,6 @@ step_smoke_test() {
 main() {
     echo "=== Project Setup ==="
     step_find_python
-    step_check_ollama
-    step_start_server
-    step_check_model
     step_setup_venv
     step_install_deps
     step_smoke_test
