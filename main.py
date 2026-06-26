@@ -22,6 +22,23 @@ def build_prompt(case: dict) -> str:
 
 MAX_RETRIES = 3
 
+def _find_departments(obj):
+    """Recursively search for a list value under any key containing 'department'."""
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            if "department" in k.lower() and isinstance(v, list):
+                return v
+        for v in obj.values():
+            result = _find_departments(v)
+            if result is not None:
+                return result
+    elif isinstance(obj, list):
+        for item in obj:
+            result = _find_departments(item)
+            if result is not None:
+                return result
+    return None
+
 def run(case_path: str) -> dict:
     with open(case_path, encoding="utf-8") as f:
         case = json.load(f)
@@ -65,11 +82,11 @@ def run(case_path: str) -> dict:
 
         try:
             cleaned = content.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
-            result = json.loads(cleaned)
-            if "recommended_departments" not in result:
-                raise ValueError("Missing recommended_departments")
-            result["scenario_id"] = case["scenario_id"]
-            return result
+            parsed = json.loads(cleaned)
+            depts = _find_departments(parsed)
+            if depts is None:
+                raise ValueError("recommended_departments not found")
+            return {"scenario_id": case["scenario_id"], "recommended_departments": depts}
         except (json.JSONDecodeError, ValueError) as e:
             print(f"\n[Warning] Bad response: {e}", file=sys.stderr)
 
