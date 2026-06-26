@@ -227,12 +227,18 @@ ollama create my-advisor -f Modelfile
 ollama run my-advisor
 ```
 
-**4. Run the evaluation using your agent:**
+**4. Run the evaluation using your agent — or interact in chat mode:**
 
-Change `MODEL` in `main.py` from `"gemma4:12b"` to `"my-advisor"`, then run:
+To evaluate your agent against all test cases, change `MODEL` in `main.py` from `"gemma4:12b"` to `"my-advisor"`, then run:
 
 ```powershell
 gbash script.sh
+```
+
+Or to interact with your agent directly in chat mode:
+
+```powershell
+ollama run my-advisor
 ```
 
 > **Tip:** Every time you update `system_prompt.txt`, re-run steps 1–2 to rebuild the agent.
