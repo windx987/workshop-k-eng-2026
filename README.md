@@ -51,13 +51,6 @@ $env:OLLAMA_MODELS = ".\models"
 ollama serve
 ```
 
-Or point to a different models directory:
-
-```powershell
-$env:OLLAMA_MODELS = "C:\Users\<you>\models"
-ollama serve
-```
-
 ### Troubleshooting
 
 #### `ollama serve` fails with "bind: Only one usage of each socket address"
