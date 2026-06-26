@@ -63,7 +63,7 @@ if __name__ == "__main__":
         print("Usage: python prompt_judge.py <system_prompt.txt>", file=sys.stderr)
         sys.exit(1)
 
-    with open(sys.argv[1], "r", encoding="utf-8") as f:
+    with open(sys.argv[1], "r", encoding="utf-8-sig") as f:
         system_prompt = f.read()
 
     evaluation_result = evaluate_student_prompt(system_prompt)
