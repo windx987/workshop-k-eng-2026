@@ -64,7 +64,8 @@ def run(case_path: str) -> dict:
             print(f"Total time     : {total_sec:.2f}s", file=sys.stderr)
 
         try:
-            result = json.loads(content)
+            cleaned = content.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+            result = json.loads(cleaned)
             result["scenario_id"] = case["scenario_id"]
             return result
         except json.JSONDecodeError as e:
