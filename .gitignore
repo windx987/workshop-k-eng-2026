@@ -1,6 +1,7 @@
 .venv/
 models/
 hidden_data/*.json
+hidden_data/S*.b64
 __pycache__/
 *.pyc
 /tmp/

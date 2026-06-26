@@ -10,24 +10,22 @@ SCORES=()
 
 echo "=== LLM Evaluation Run ==="
 
-for case_file in "$DATA_DIR"/*.json; do
-    echo ""
-    echo "Running: $case_file"
+CIPHER_KEY="workshop2026"
 
-    "$PYTHON" main.py "$case_file" > /tmp/llm_response.json
-    eval_result=$("$PYTHON" eval.py "$case_file" /tmp/llm_response.json)
-    echo "  $eval_result"
+for b64_file in "$HIDDEN_DIR"/P{01..10}.b64; do
+    name=$(basename "${b64_file%.b64}")
+    tmp_case="/tmp/${name}.json"
 
-    score=$(echo "$eval_result" | "$PYTHON" -c "import sys,json; print(json.load(sys.stdin)['score'])")
-    SCORES+=("$score")
-done
-
-for b64_file in "$HIDDEN_DIR"/*.b64; do
-    tmp_case="/tmp/hidden_case_$(basename "${b64_file%.b64}").json"
-    base64 -d "$b64_file" > "$tmp_case"
+    "$PYTHON" -c "
+import base64, sys
+KEY = b'${CIPHER_KEY}'
+raw = base64.b64decode(open('${b64_file}').read())
+dec = bytes([b ^ KEY[i % len(KEY)] for i, b in enumerate(raw)])
+sys.stdout.buffer.write(dec)
+" > "$tmp_case"
 
     echo ""
-    echo "Running: $b64_file (hidden)"
+    echo "Running: $name"
 
     "$PYTHON" main.py "$tmp_case" > /tmp/llm_response.json
     eval_result=$("$PYTHON" eval.py "$tmp_case" /tmp/llm_response.json)
