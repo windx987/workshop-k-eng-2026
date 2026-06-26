@@ -211,7 +211,8 @@ Once you've written your `system_prompt.txt`, you can bake it into a custom Olla
 
 ```powershell
 $prompt = Get-Content system_prompt.txt -Raw
-"FROM gemma4:12b`nSYSTEM `"$prompt`"" | Out-File -Encoding utf8 Modelfile
+$rule = "IMPORTANT: Respond ONLY with a valid JSON object. Do NOT include 'thought', 'reasoning', or any extra keys outside the JSON."
+"FROM gemma4:12b`nSYSTEM `"$prompt`n`n$rule`"" | Out-File -Encoding utf8 Modelfile
 ```
 
 **2. Create the agent:**
