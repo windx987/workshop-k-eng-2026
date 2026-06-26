@@ -173,6 +173,36 @@ echo "You are a university department advisor. Analyze the student's description
 
 Then open `system_prompt.txt` in VS Code and customize it to improve your score.
 
+## Usage
+
+Run the full evaluation pipeline:
+
+```powershell
+gbash script.sh
+```
+
+Run a specific mode:
+
+```powershell
+gbash script.sh public   # public cases only (P01-P05)
+gbash script.sh hidden   # hidden cases only (P06-P10)
+gbash script.sh judge    # prompt judge only
+```
+
+Run a single test case:
+
+```bash
+.venv/Scripts/python.exe main.py data/S1.json
+```
+
+## Prompt Judge
+
+Write your system prompt in `system_prompt.txt`, then run:
+
+```powershell
+gbash script.sh judge
+```
+
 ## Create Your Own Agent
 
 Once you've written your `system_prompt.txt`, you can bake it into a custom Ollama model:
@@ -205,36 +235,6 @@ gbash script.sh
 ```
 
 > **Tip:** Every time you update `system_prompt.txt`, re-run steps 1–2 to rebuild the agent.
-
-## Usage
-
-Run the full evaluation pipeline:
-
-```powershell
-gbash script.sh
-```
-
-Run a specific mode:
-
-```powershell
-gbash script.sh public   # public cases only (P01-P05)
-gbash script.sh hidden   # hidden cases only (P06-P10)
-gbash script.sh judge    # prompt judge only
-```
-
-Run a single test case:
-
-```bash
-.venv/Scripts/python.exe main.py data/S1.json
-```
-
-## Prompt Judge
-
-Write your system prompt in `system_prompt.txt`, then run:
-
-```powershell
-gbash script.sh judge
-```
 
 <!-- ## Adding Test Cases
 
