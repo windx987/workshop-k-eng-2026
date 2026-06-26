@@ -6,13 +6,24 @@ PYTHON=".venv/Scripts/python.exe"
 DATA_DIR="data"
 HIDDEN_DIR="hidden_data"
 PROMPT_FILE="system_prompt.txt"
+CIPHER_KEY="workshop2026"
 SCORES=()
 
 echo "=== LLM Evaluation Run ==="
 
-CIPHER_KEY="workshop2026"
+for case_file in "$DATA_DIR"/*.json; do
+    echo ""
+    echo "Running: $(basename "$case_file")"
 
-for b64_file in "$HIDDEN_DIR"/P{01..10}.b64; do
+    "$PYTHON" main.py "$case_file" > /tmp/llm_response.json
+    eval_result=$("$PYTHON" eval.py "$case_file" /tmp/llm_response.json)
+    echo "  $eval_result"
+
+    score=$(echo "$eval_result" | "$PYTHON" -c "import sys,json; print(json.load(sys.stdin)['score'])")
+    SCORES+=("$score")
+done
+
+for b64_file in "$HIDDEN_DIR"/P{06..10}.b64; do
     name=$(basename "${b64_file%.b64}")
     tmp_case="/tmp/${name}.json"
 
@@ -25,7 +36,7 @@ sys.stdout.buffer.write(dec)
 " > "$tmp_case"
 
     echo ""
-    echo "Running: $name"
+    echo "Running: $name (hidden)"
 
     "$PYTHON" main.py "$tmp_case" > /tmp/llm_response.json
     eval_result=$("$PYTHON" eval.py "$tmp_case" /tmp/llm_response.json)
