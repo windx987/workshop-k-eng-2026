@@ -55,7 +55,15 @@ def run(case_path: str) -> dict:
 
         chunks = ollama.chat(
             model=MODEL,
-            messages=[{"role": "user", "content": prompt}],
+            messages=[
+                {"role": "system", "content": (
+                    "You are a department recommendation system. "
+                    "Respond ONLY with a valid JSON object containing exactly two keys: "
+                    "'scenario_id' (string) and 'recommended_departments' (array of strings). "
+                    "Do NOT include 'thought', 'reasoning', 'explanation', or any other keys."
+                )},
+                {"role": "user", "content": prompt},
+            ],
             format="json",
             stream=True,
         )
