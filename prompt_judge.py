@@ -2,6 +2,8 @@ import sys
 import json
 import ollama
 
+sys.stdout.reconfigure(encoding="utf-8")
+
 MODEL = "gemma4:12b"
 
 def evaluate_student_prompt(prompt_text: str) -> dict:
