@@ -1,4 +1,6 @@
-# Prompt Engineering Evaluation Framework
+# Prompt Engineering Evaluation Framework [[TH]](docs/README.md)
+
+
 
 A local, CI-style framework for evaluating LLM output accuracy. Sends prompts to a locally-running Ollama model and scores responses against ground-truth labels — no external APIs required.
 
@@ -227,18 +229,12 @@ ollama create my-advisor -f Modelfile
 ollama run my-advisor
 ```
 
-**4. Run the evaluation using your agent — or interact in chat mode:**
+**4. Run the evaluation using your agent:**
 
-To evaluate your agent against all test cases, change `MODEL` in `main.py` from `"gemma4:12b"` to `"my-advisor"`, then run:
+Change `MODEL` in `main.py` from `"gemma4:12b"` to `"my-advisor"`, then run:
 
 ```powershell
 gbash script.sh
-```
-
-Or to interact with your agent directly in chat mode:
-
-```powershell
-ollama run my-advisor
 ```
 
 > **Tip:** Every time you update `system_prompt.txt`, re-run steps 1–2 to rebuild the agent.
