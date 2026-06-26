@@ -3,9 +3,9 @@ import json
 
 
 def evaluate(case_path: str, response_path: str) -> dict:
-    with open(case_path) as f:
+    with open(case_path, encoding="utf-8") as f:
         case = json.load(f)
-    with open(response_path) as f:
+    with open(response_path, encoding="utf-8") as f:
         response = json.load(f)
 
     gt = set(case["gt_departments"])
