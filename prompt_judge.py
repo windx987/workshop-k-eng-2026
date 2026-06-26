@@ -63,8 +63,17 @@ if __name__ == "__main__":
         print("Usage: python prompt_judge.py <system_prompt.txt>", file=sys.stderr)
         sys.exit(1)
 
-    with open(sys.argv[1], "r", encoding="utf-8-sig") as f:
-        system_prompt = f.read()
+    with open(sys.argv[1], "rb") as f:
+        raw = f.read()
+    for enc in ("utf-8-sig", "utf-16", "utf-8"):
+        try:
+            system_prompt = raw.decode(enc)
+            break
+        except UnicodeDecodeError:
+            continue
+    else:
+        print("Error: cannot decode system_prompt.txt. Save it as UTF-8.", file=sys.stderr)
+        sys.exit(1)
 
     evaluation_result = evaluate_student_prompt(system_prompt)
     print(json.dumps(evaluation_result, ensure_ascii=False, indent=2))

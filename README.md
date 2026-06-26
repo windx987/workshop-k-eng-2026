@@ -94,7 +94,7 @@ If the model responds, the local LLM is ready.
 Git Bash is required to run `script.sh`.
 
 ```powershell
-winget install Git.Git --silent --accept-source-agreements --accept-package-agreements
+winget install --id Git.Git --exact --source winget --silent --disable-interactivity --accept-source-agreements --accept-package-agreements
 ```
 
 Open a **new** PowerShell window after installation, then verify:
@@ -109,8 +109,13 @@ Set up a `gbash` alias for Git Bash:
 Set-Alias gbash "C:\Program Files\Git\bin\bash.exe"
 gbash --version
 ```
-
 > **Note:** This alias only lasts for the current terminal session. Run `Set-Alias` again if you open a new PowerShell window.
+
+for Workshop's ECC 704: 
+
+```powershell
+Set-Alias gbash "$env:LOCALAPPDATA\Programs\Git\bin\bash.exe"
+```
 
 ### 2. Clone the repository
 
@@ -173,18 +178,35 @@ Run the full evaluation pipeline:
 gbash script.sh
 ```
 
+Run a specific mode:
+
+```powershell
+gbash script.sh public   # public cases only (P01-P05)
+gbash script.sh hidden   # hidden cases only (P06-P10)
+gbash script.sh judge    # prompt judge only
+```
+
 Run a single test case:
 
 ```bash
 .venv/Scripts/python.exe main.py data/S1.json
 ```
-<!-- 
-Evaluate a response:
 
-```bash
-.venv/Scripts/python.exe main.py data/S1.json > /tmp/response.json
-.venv/Scripts/python.exe eval.py data/S1.json /tmp/response.json
-``` -->
+## Prompt Judge
+
+Write your system prompt in `system_prompt.txt`, then run:
+
+```powershell
+gbash script.sh judge
+```
+
+Create the file with VS Code or save it from PowerShell using:
+
+```powershell
+"Your prompt here" | Out-File -Encoding utf8 system_prompt.txt
+```
+
+> **Note:** Do not use PowerShell's `echo` or `>` to create the file — it saves as UTF-16 which causes an encoding error.
 
 ## Adding Test Cases
 
