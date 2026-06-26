@@ -66,10 +66,12 @@ def run(case_path: str) -> dict:
         try:
             cleaned = content.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
             result = json.loads(cleaned)
+            if "recommended_departments" not in result:
+                raise ValueError("Missing recommended_departments")
             result["scenario_id"] = case["scenario_id"]
             return result
-        except json.JSONDecodeError as e:
-            print(f"\n[Warning] Invalid JSON: {e}", file=sys.stderr)
+        except (json.JSONDecodeError, ValueError) as e:
+            print(f"\n[Warning] Bad response: {e}", file=sys.stderr)
 
     raise RuntimeError(f"Model failed to return valid JSON after {MAX_RETRIES} attempts")
 
