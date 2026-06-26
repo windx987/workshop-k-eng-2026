@@ -29,10 +29,10 @@ if [ "$count" -eq 0 ]; then
 fi
 
 scores_csv=$(IFS=,; echo "${SCORES[*]}")
-final=$("$PYTHON" -c "s=[$scores_csv]; print(round(sum(s)/len(s), 4))")
+final=$("$PYTHON" -c "s=[$scores_csv]; print(round(sum(s), 4))")
 
 echo ""
-echo "=== Final Score: $final / 1.0 ($count cases) ==="
+echo "=== Final Score: $final / $count cases ==="
 
 echo ""
 echo "=== Prompt Judge ==="
