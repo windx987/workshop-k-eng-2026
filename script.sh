@@ -7,17 +7,6 @@ DATA_DIR="data"
 PROMPT_FILE="system_prompt.txt"
 SCORES=()
 
-echo "=== Prompt Judge ==="
-if [ -f "$PROMPT_FILE" ]; then
-    prompt_eval=$("$PYTHON" prompt_judge.py "$PROMPT_FILE")
-    echo "$prompt_eval"
-    prompt_score=$(echo "$prompt_eval" | "$PYTHON" -c "import sys,json; print(json.load(sys.stdin).get('total_score', 0))")
-    echo ">> Prompt Quality Score: $prompt_score / 100"
-else
-    echo "Warning: $PROMPT_FILE not found. Skipping prompt evaluation."
-fi
-echo ""
-
 echo "=== LLM Evaluation Run ==="
 
 for case_file in "$DATA_DIR"/*.json; do
@@ -44,3 +33,14 @@ final=$("$PYTHON" -c "s=[$scores_csv]; print(round(sum(s)/len(s), 4))")
 
 echo ""
 echo "=== Final Score: $final / 1.0 ($count cases) ==="
+
+echo ""
+echo "=== Prompt Judge ==="
+if [ -f "$PROMPT_FILE" ]; then
+    prompt_eval=$("$PYTHON" prompt_judge.py "$PROMPT_FILE")
+    echo "$prompt_eval"
+    prompt_score=$(echo "$prompt_eval" | "$PYTHON" -c "import sys,json; print(json.load(sys.stdin).get('total_score', 0))")
+    echo ">> Prompt Quality Score: $prompt_score / 100"
+else
+    echo "Warning: $PROMPT_FILE not found. Skipping prompt evaluation."
+fi
