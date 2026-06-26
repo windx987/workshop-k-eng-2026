@@ -163,6 +163,16 @@ python -m venv .venv
 
 You should see JSON output with `recommended_departments`. If so, the setup is complete.
 
+## Jump Start
+
+Run this in PowerShell to create a starter `system_prompt.txt`:
+
+```powershell
+echo "You are a university department advisor. Analyze the student's description carefully and recommend the most suitable departments. Be empathetic and encouraging in your response. Explain your reasoning clearly before making recommendations." > system_prompt.txt
+```
+
+Then open `system_prompt.txt` in VS Code and customize it to improve your score.
+
 ## Usage
 
 Run the full evaluation pipeline:
@@ -192,16 +202,6 @@ Write your system prompt in `system_prompt.txt`, then run:
 ```powershell
 gbash script.sh judge
 ```
-
-### Jump Start
-
-Run this in PowerShell to create a starter `system_prompt.txt`:
-
-```powershell
-echo "You are a university department advisor. Analyze the student's description carefully and recommend the most suitable departments. Be empathetic and encouraging in your response. Explain your reasoning clearly before making recommendations." > system_prompt.txt
-```
-
-Then open `system_prompt.txt` in VS Code and customize it to improve your score.
 
 <!-- ## Adding Test Cases
 
