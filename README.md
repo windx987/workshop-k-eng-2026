@@ -173,6 +173,39 @@ echo "You are a university department advisor. Analyze the student's description
 
 Then open `system_prompt.txt` in VS Code and customize it to improve your score.
 
+## Create Your Own Agent
+
+Once you've written your `system_prompt.txt`, you can bake it into a custom Ollama model:
+
+**1. Generate a Modelfile from your system prompt:**
+
+```powershell
+$prompt = Get-Content system_prompt.txt -Raw
+"FROM gemma4:12b`nSYSTEM `"$prompt`"" | Out-File -Encoding utf8 Modelfile
+```
+
+**2. Create the agent:**
+
+```powershell
+ollama create my-advisor -f Modelfile
+```
+
+**3. Chat with your agent:**
+
+```powershell
+ollama run my-advisor
+```
+
+**4. Run the evaluation using your agent:**
+
+Change `MODEL` in `main.py` from `"gemma4:12b"` to `"my-advisor"`, then run:
+
+```powershell
+gbash script.sh
+```
+
+> **Tip:** Every time you update `system_prompt.txt`, re-run steps 1–2 to rebuild the agent.
+
 ## Usage
 
 Run the full evaluation pipeline:
