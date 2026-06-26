@@ -4,9 +4,10 @@
 
 A local, CI-style framework for evaluating LLM output accuracy. Sends prompts to a locally-running Ollama model and scores responses against ground-truth labels — no external APIs required.
 
-```
+<!-- ```
 data/*.json  →  main.py  →  Ollama (gemma4:12b)  →  eval.py  →  score (0.0–1.0)
-```
+``` -->
+![alt text](<ChatGPT Image Jun 26, 2026, 04_54_44 PM.png>)
 
 ## Prerequisites
 
