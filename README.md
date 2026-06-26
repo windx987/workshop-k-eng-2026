@@ -201,6 +201,21 @@ Create the file with VS Code or save it from PowerShell using:
 
 > **Note:** Do not use PowerShell's `echo` or `>` to create the file — it saves as UTF-16 which causes an encoding error.
 
+### Jump Start
+
+Paste this into PowerShell to create a starter `system_prompt.txt`:
+
+```powershell
+@"
+You are a university department advisor.
+Analyze the student's description carefully and recommend the most suitable departments.
+Be empathetic and encouraging in your response.
+Explain your reasoning clearly before making recommendations.
+"@ | Out-File -Encoding utf8 system_prompt.txt
+```
+
+Then open `system_prompt.txt` in VS Code and customize it to improve your score.
+
 ## Adding Test Cases
 
 Drop a `.json` file into `data/` — the pipeline picks it up automatically on the next run.
