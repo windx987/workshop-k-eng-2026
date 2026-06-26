@@ -4,6 +4,7 @@ shopt -s nullglob
 
 PYTHON=".venv/Scripts/python.exe"
 DATA_DIR="data"
+HIDDEN_DIR="hidden_data"
 PROMPT_FILE="system_prompt.txt"
 SCORES=()
 
@@ -15,6 +16,21 @@ for case_file in "$DATA_DIR"/*.json; do
 
     "$PYTHON" main.py "$case_file" > /tmp/llm_response.json
     eval_result=$("$PYTHON" eval.py "$case_file" /tmp/llm_response.json)
+    echo "  $eval_result"
+
+    score=$(echo "$eval_result" | "$PYTHON" -c "import sys,json; print(json.load(sys.stdin)['score'])")
+    SCORES+=("$score")
+done
+
+for b64_file in "$HIDDEN_DIR"/*.b64; do
+    tmp_case="/tmp/hidden_case_$(basename "${b64_file%.b64}").json"
+    base64 -d "$b64_file" > "$tmp_case"
+
+    echo ""
+    echo "Running: $b64_file (hidden)"
+
+    "$PYTHON" main.py "$tmp_case" > /tmp/llm_response.json
+    eval_result=$("$PYTHON" eval.py "$tmp_case" /tmp/llm_response.json)
     echo "  $eval_result"
 
     score=$(echo "$eval_result" | "$PYTHON" -c "import sys,json; print(json.load(sys.stdin)['score'])")
