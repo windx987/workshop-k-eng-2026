@@ -11,10 +11,11 @@ def build_prompt(case: dict) -> str:
         f"Student description: {case['student_text']}\n"
         f"Allowed departments: {', '.join(case['allowed_departments'])}\n"
         f"Maximum suggestions: {case['max_suggestions']}\n\n"
-        f"Respond ONLY with a JSON object in this exact format, no other text:\n"
-        f'{{"scenario_id": "{case["scenario_id"]}", "recommended_departments": ["Name1"]}}\n\n'
+        f"Respond ONLY with a JSON object in this exact format:\n"
+        f'{{"scenario_id": "{case["scenario_id"]}", "raw_output": "Your full reasoning, empathy, and analysis here.", "recommended_departments": ["Name1"]}}\n\n'
         f"Rules:\n"
-        f"- Use only department names from the allowed list (exact spelling)\n"
+        f"- Put ALL your reasoning, empathy, and explanation inside 'raw_output'\n"
+        f"- Use only department names from the allowed list (exact spelling) in 'recommended_departments'\n"
         f"- Return at most {case['max_suggestions']} departments\n"
         f"- Return only departments genuinely relevant to the student"
     )
