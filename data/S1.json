@@ -1,7 +1,7 @@
 {
   "scenario_id": "P01",
   "student_text": "เราไม่ชอบงานที่ต้องไปเจอคนเยอะๆ หรือต้องพูดพรีเซนต์หน้าห้องเลย แต่อยากทำงานหน้าคอม ใส่หูฟัง ฟังเพลงชิลๆ มากกว่า วันหยุดเราชอบเล่นเกมแนวสร้างเมือง (Cities: Skylines) ชอบดู YouTube ช่องที่รีวิวพวก Gadget ล้ำๆ หรือพวก AI เจ๋งๆ เวลาทำงานกลุ่มเราจะเป็นคนอาสาทำสไลด์นำเสนอให้ตลอด ชอบจัดหน้า พิมพ์ text ให้มันดูสวยๆ อ่านง่ายๆ แต่เราไม่ได้วาดรูปเก่งนะ ไม่ชอบวาดรูปด้วย อ้อ... แล้วก็เกลียดวิชาเคมีกับชีวะมาก เรียนทีไรหลับตลอด แนะนำคณะที",
-  "allowed_departments": ["Computer Science", "UX/UI Design", "Data Science", "Information Technology", "Medicine", "Fine Arts", "Marketing"],
+  "allowed_departments": ["Computer Science", "UX/UI Design", "Data Science", "Information Technology", "Medicine", "Fine Arts", "Marketing", "Computer Engineering"],
   "max_suggestions": 3,
-  "gt_departments": ["UX/UI Design", "Computer Science", "Information Technology"]
+  "gt_departments": ["UX/UI Design", "Computer Science", "Computer Engineering"]
 }

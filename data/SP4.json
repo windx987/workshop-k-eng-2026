@@ -1,0 +1,7 @@
+{
+  "scenario_id": "SP4",
+  "student_text": "หนูเป็นนักว่ายน้ำทีมโรงเรียนค่ะ ซ้อมทุกเช้า อยากฝึกให้ดีขึ้นและอาจเป็นโค้ชในอนาคต แต่หนูสังเกตว่าตัวเองมักถามคำถามที่โค้ชตอบไม่ได้ เช่น กล้ามเนื้อเจ็บหลังซ้อมหนักเพราะอะไรกันแน่ การกิน carb ก่อนแข่งช่วยได้ยังไง หนูลองหาคำตอบเองจากงานวิจัยแล้วพบว่าเกี่ยวกับ lactic acid glycogen และ muscle fiber repair เริ่มอ่านเรื่อง hormonal response ต่อการออกกำลังกาย ทดลองปรับอาหารตาม evidence แล้วจดผล อยากเป็นโค้ชที่เข้าใจ science ลึกกว่าโค้ชทั่วไป แนะนำคณะหน่อยนะคะ",
+  "allowed_departments": ["Sports Science", "Physical Education", "Exercise Science", "Kinesiology", "Biochemistry", "Physiology", "Nutrition Science"],
+  "max_suggestions": 3,
+  "gt_departments": ["Biochemistry", "Physiology", "Nutrition Science"]
+}

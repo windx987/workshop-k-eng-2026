@@ -1,0 +1,7 @@
+{
+  "scenario_id": "SP5",
+  "student_text": "หนูรักการเล่าเรื่องมากค่ะ เขียนนิยายลง Wattpad มาสามปีแล้ว ทำ TikTok และ YouTube vlog เล่าเรื่องราวชีวิต ฝันอยากเป็นนักเขียนหรือ content creator ดัง ชอบดูซีรีส์แล้ววิเคราะห์ว่าโครงสร้าง script ของแต่ละตอนเป็นยังไง จดบันทึกว่า scene ไหนมียอด engagement สูง ตัวละครแบบไหนที่คน comment ว่าชอบมากกว่า และนำมาปรับใช้กับงานเขียนตัวเอง แต่คำถามที่รบกวนหนูตลอดคือ 'ทำไมเรื่องบางเรื่องทำให้คนร้องไห้แต่อีกเรื่องไม่ทำ ทั้งที่เขียนดีพอๆ กัน?' อยากเข้าใจว่ามีอะไรในตัวมนุษย์ที่ตอบสนองต่อเรื่องราวในแบบที่เราควบคุมไม่ได้ ไม่ชอบงานถ่ายทำหรือตัดต่อเลยค่ะ อยากเน้นที่การเขียนและสร้าง content แนะนำคณะหน่อยนะคะ",
+  "allowed_departments": ["Communications", "Film and Digital Media", "Thai Literature", "Mass Media", "Psychology", "Cognitive Science", "Behavioral Science"],
+  "max_suggestions": 3,
+  "gt_departments": ["Psychology", "Cognitive Science", "Behavioral Science"]
+}

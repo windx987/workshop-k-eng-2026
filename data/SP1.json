@@ -1,0 +1,7 @@
+{
+  "scenario_id": "SP1",
+  "student_text": "ผมฝันอยากเป็นหมอมาตั้งแต่เด็กครับ อยากรักษาคนไข้และช่วยชีวิตคน ตอนนี้ไปอาสาสมัครที่โรงพยาบาลทุกสุดสัปดาห์ เรียน anatomy และ physiology เพื่อเตรียมสอบ แต่สิ่งที่ตื่นเต้นที่สุดทุกครั้งที่ไปโรงพยาบาลคือเครื่อง MRI เครื่อง ventilator และ defibrillator ผมอยากรู้ว่ามันทำงานยังไงในระดับวงจรไฟฟ้าและ physics เลยลองต่อวงจรวัดชีพจรจาก Arduino เองที่บ้าน ชอบอ่านว่า pacemaker ออกแบบให้เล็กและประหยัดพลังงานยังไง และอ่านเรื่อง magnetic resonance ว่า field ทำให้โปรตอนในร่างกายสั่นยังไง ผมคิดว่าถ้าเข้าใจอุปกรณ์การแพทย์ได้ลึก จะเป็นหมอที่ดีขึ้น แนะนำคณะหน่อยครับ",
+  "allowed_departments": ["Medicine", "Nursing", "Public Health", "Pharmacy", "Biomedical Engineering", "Electrical Engineering", "Physics"],
+  "max_suggestions": 3,
+  "gt_departments": ["Biomedical Engineering", "Electrical Engineering", "Physics"]
+}

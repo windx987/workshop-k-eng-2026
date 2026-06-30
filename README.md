@@ -5,7 +5,7 @@
 A local, CI-style framework for evaluating LLM output accuracy. Sends prompts to a locally-running Ollama model and scores responses against ground-truth labels — no external APIs required.
 
 <!-- ```
-data/*.json  →  main.py  →  Ollama (gemma4:12b)  →  eval.py  →  score (0.0–1.0)
+data/*.json  →  main.py  →  Ollama (gemma4:31b-cloud)  →  eval.py  →  score (0.0–1.0)
 ``` -->
 ![alt text](<ChatGPT Image Jun 26, 2026, 04_54_44 PM.png>)
 
@@ -35,11 +35,11 @@ ollama --version
 **Default** — download from Ollama registry:
 
 ```powershell
-ollama pull gemma4:12b
+ollama pull gemma4:31b-cloud
 ollama serve
 ```
 
-The model is ~7.6 GB. If the download fails mid-way, re-run `ollama pull gemma4:12b` — Ollama resumes partial downloads.
+The model is ~19 GB. If the download fails mid-way, re-run `ollama pull gemma4:31b-cloud` — Ollama resumes partial downloads.
 
 **Local** — first, copy your Ollama models into the project:
 
@@ -71,7 +71,7 @@ Then retry `ollama serve`.
 Open a new terminal (keep `ollama serve` running) and start a chat:
 
 ```powershell
-ollama run gemma4:12b
+ollama run gemma4:31b-cloud
 ```
 
 ```
@@ -192,10 +192,34 @@ gbash script.sh hidden   # hidden cases only (P06-P10)
 gbash script.sh judge    # prompt judge only
 ```
 
+Run special scenarios only (SP1–SP5):
+
+```powershell
+gbash script_special.sh
+```
+
 Run a single test case:
 
 ```bash
 .venv/Scripts/python.exe main.py data/S1.json
+```
+
+## Special Scenarios
+
+Five maximum-difficulty cases (SP1–SP5) in `data/` are designed to stress-test advanced models. Each uses a **stated career goal as a trap** — the student genuinely believes they want field X, but the ground truth is the field they would actually thrive in.
+
+| File | Student identity | Trap departments | Ground truth |
+|---|---|---|---|
+| SP1 | "I want to be a doctor" | Medicine, Nursing, Public Health | Biomedical Engineering, Electrical Engineering, Physics |
+| SP2 | Coder with AI curiosity | Software Engineering, Data Science | Computer Science, Information Technology, Philosophy |
+| SP3 | "I want to be a journalist" | Journalism, Communications, Mass Media | Political Science, Economics, Sociology |
+| SP4 | Competitive swimmer / future coach | Sports Science, Physical Education | Biochemistry, Physiology, Nutrition Science |
+| SP5 | Wattpad writer / content creator | Thai Literature, Film and Digital Media | Psychology, Cognitive Science, Behavioral Science |
+
+Run them with:
+
+```powershell
+gbash script_special.sh
 ```
 
 ## Prompt Judge
@@ -215,7 +239,7 @@ Once you've written your `system_prompt.txt`, you can bake it into a custom Olla
 ```powershell
 $prompt = Get-Content system_prompt.txt -Raw
 $rule = "IMPORTANT: Respond ONLY with a valid JSON object. Do NOT include 'thought', 'reasoning', or any extra keys outside the JSON."
-"FROM gemma4:12b`nSYSTEM `"$prompt`n`n$rule`"" | Out-File -Encoding utf8 Modelfile
+"FROM gemma4:31b-cloud`nSYSTEM `"$prompt`n`n$rule`"" | Out-File -Encoding utf8 Modelfile
 ```
 
 **2. Create the agent:**
@@ -232,7 +256,7 @@ ollama run my-advisor
 
 **4. Run the evaluation using your agent:**
 
-Change `MODEL` in `main.py` from `"gemma4:12b"` to `"my-advisor"`, then run:
+Change `MODEL` in `main.py` from `"gemma4:31b-cloud"` to `"my-advisor"`, then run:
 
 ```powershell
 gbash script.sh

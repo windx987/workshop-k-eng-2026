@@ -2,7 +2,7 @@ import sys
 import json
 import ollama
 
-MODEL = "gemma4:12b"
+MODEL = "gemma4:31b-cloud"
 
 
 def build_prompt(case: dict) -> str:

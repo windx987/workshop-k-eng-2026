@@ -4,7 +4,7 @@ import ollama
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-MODEL = "gemma4:12b"
+MODEL = "gemma4:31b-cloud"
 
 def evaluate_student_prompt(prompt_text: str) -> dict:
     judge_prompt = f"""You are an expert Prompt Engineering Evaluator.

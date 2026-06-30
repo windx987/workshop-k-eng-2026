@@ -3,7 +3,7 @@
 เฟรมเวิร์คแบบ CI สำหรับประเมินความแม่นยำของ LLM ในเครื่อง ส่ง prompt ไปยังโมเดล Ollama และให้คะแนนผลลัพธ์เทียบกับคำตอบที่ถูกต้อง — ไม่ต้องใช้ API ภายนอก
 
 <!-- ```
-data/*.json  →  main.py  →  Ollama (gemma4:12b)  →  eval.py  →  คะแนน (0.0–1.0)
+data/*.json  →  main.py  →  Ollama (gemma4:31b-cloud)  →  eval.py  →  คะแนน (0.0–1.0)
 ``` -->
 ![alt text](<ChatGPT Image Jun 26, 2026, 04_54_44 PM.png>)
 
@@ -33,11 +33,11 @@ ollama --version
 **แบบปกติ** — ดาวน์โหลดจาก Ollama registry:
 
 ```powershell
-ollama pull gemma4:12b
+ollama pull gemma4:31b-cloud
 ollama serve
 ```
 
-โมเดลมีขนาด ~7.6 GB หากดาวน์โหลดหยุดกลางคัน ให้รัน `ollama pull gemma4:12b` ใหม่ — Ollama จะดาวน์โหลดต่อจากที่ค้างไว้
+โมเดลมีขนาด ~19 GB หากดาวน์โหลดหยุดกลางคัน ให้รัน `ollama pull gemma4:31b-cloud` ใหม่ — Ollama จะดาวน์โหลดต่อจากที่ค้างไว้
 
 **แบบ Local** — คัดลอกโมเดลเข้าโปรเจกต์:
 
@@ -69,7 +69,7 @@ Stop-Process -Name "ollama*" -Force
 เปิด terminal ใหม่ (ให้ `ollama serve` ทำงานอยู่) แล้วลองคุย:
 
 ```powershell
-ollama run gemma4:12b
+ollama run gemma4:31b-cloud
 ```
 
 ```
@@ -191,10 +191,34 @@ gbash script.sh hidden   # เฉพาะเคสซ่อน (P06-P10)
 gbash script.sh judge    # ประเมิน prompt เท่านั้น
 ```
 
+รัน special scenarios (SP1–SP5):
+
+```powershell
+gbash script_special.sh
+```
+
 รันเคสเดี่ยว:
 
 ```bash
 .venv/Scripts/python.exe main.py data/S1.json
+```
+
+## Special Scenarios
+
+ไฟล์ SP1–SP5 ใน `data/` คือเคสระดับความยากสูงสุด ออกแบบมาเพื่อทดสอบโมเดลขั้นสูง แต่ละเคสใช้ **เป้าหมายอาชีพที่นักเรียนระบุเองเป็นกับดัก** — นักเรียนคิดว่าตัวเองอยากเรียนสาขา X แต่คำตอบที่แท้จริงคือสาขาที่พวกเขาจะเติบโตได้จริง
+
+| ไฟล์ | ตัวตนของนักเรียน | สาขากับดัก | คำตอบที่ถูกต้อง |
+|---|---|---|---|
+| SP1 | "อยากเป็นหมอ" | Medicine, Nursing, Public Health | Biomedical Engineering, Electrical Engineering, Physics |
+| SP2 | โปรแกรมเมอร์ที่สนใจ AI | Software Engineering, Data Science | Computer Science, Information Technology, Philosophy |
+| SP3 | "อยากเป็นนักข่าว" | Journalism, Communications, Mass Media | Political Science, Economics, Sociology |
+| SP4 | นักว่ายน้ำ / อยากเป็นโค้ช | Sports Science, Physical Education | Biochemistry, Physiology, Nutrition Science |
+| SP5 | นักเขียน Wattpad / content creator | Thai Literature, Film and Digital Media | Psychology, Cognitive Science, Behavioral Science |
+
+รันด้วย:
+
+```powershell
+gbash script_special.sh
 ```
 
 ## Prompt Judge
@@ -224,7 +248,7 @@ Judge จะให้คะแนน prompt ของคุณใน 5 มิต
 ```powershell
 $prompt = Get-Content system_prompt.txt -Raw
 $rule = "IMPORTANT: Respond ONLY with a valid JSON object. Do NOT include 'thought', 'reasoning', or any extra keys outside the JSON."
-"FROM gemma4:12b`nSYSTEM `"$prompt`n`n$rule`"" | Out-File -Encoding utf8 Modelfile
+"FROM gemma4:31b-cloud`nSYSTEM `"$prompt`n`n$rule`"" | Out-File -Encoding utf8 Modelfile
 ```
 
 **2. สร้าง agent:**
@@ -241,7 +265,7 @@ ollama run my-advisor
 
 **4. รัน evaluation ด้วย agent ของตัวเอง หรือคุยใน chat mode:**
 
-เปลี่ยน `MODEL` ใน `main.py` จาก `"gemma4:12b"` เป็น `"my-advisor"` แล้วรัน:
+เปลี่ยน `MODEL` ใน `main.py` จาก `"gemma4:31b-cloud"` เป็น `"my-advisor"` แล้วรัน:
 
 ```powershell
 gbash script.sh

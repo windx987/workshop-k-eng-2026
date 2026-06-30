@@ -1,0 +1,7 @@
+{
+  "scenario_id": "SP2",
+  "student_text": "ผมเขียนโค้ด Python และทำ web app เป็นงานอดิเรกครับ ตั้ง home server จัดการ network บ้านเอง ชอบอ่านเรื่อง system design และ database architecture แต่สิ่งที่รบกวนใจผมมากที่สุดคือโปรเจกต์ AI ที่ทำอยู่ ผมถามตัวเองว่า 'ตอนที่ model predict ถูก มันเข้าใจจริงๆ หรือแค่จำ pattern?' search หาคำตอบแล้วพบว่ามันเป็นคำถามที่นักปรัชญาถกเถียงกันมาหลายร้อยปี ลองอ่าน philosophy of mind และ Turing Test เพิ่มเติมแล้วยิ่งสงสัยว่า 'ความเข้าใจ' คืออะไรกันแน่ แต่ผมก็ยังชอบ implement และ deploy ระบบจริงๆ อยู่เสมอ แนะนำคณะหน่อยครับ",
+  "allowed_departments": ["Software Engineering", "Data Science", "Mathematics", "Computer Science", "Information Technology", "Philosophy", "Cognitive Science"],
+  "max_suggestions": 3,
+  "gt_departments": ["Computer Science", "Information Technology", "Philosophy"]
+}
