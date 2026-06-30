@@ -117,10 +117,14 @@ Set-Alias gbash "$env:LOCALAPPDATA\Programs\Git\bin\bash.exe"
 
 Open **PowerShell** or **Git Bash** (search in the Start menu):
 
+Clone the `gemma4-31b-cloud` branch directly:
+
 ```powershell
-git clone https://github.com/windx987/workshop-k-eng-2026.git
+git clone -b gemma4-31b-cloud https://github.com/windx987/workshop-k-eng-2026.git
 cd ./workshop-k-eng-2026
 ```
+
+> **Note:** The `-b gemma4-31b-cloud` flag checks out this specific branch. If you want the default branch instead, omit `-b gemma4-31b-cloud`.
 
 ### 3. Install Python 3.12 (optional)
 
