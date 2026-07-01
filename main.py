@@ -1,8 +1,27 @@
 import sys
 import json
+import os
 import ollama
 
 MODEL = "gemma4:12b"
+
+_FALLBACK_SYSTEM = (
+    "You are a department recommendation system. "
+    "Respond ONLY with a valid JSON object containing exactly two keys: "
+    "'scenario_id' (string) and 'recommended_departments' (array of strings). "
+    "Do NOT include 'thought', 'reasoning', 'explanation', or any other keys."
+)
+
+def _load_system_prompt() -> str:
+    path = os.path.join(os.path.dirname(__file__), "system_prompt.txt")
+    if os.path.exists(path):
+        for enc in ("utf-8-sig", "utf-16", "utf-8"):
+            try:
+                with open(path, encoding=enc) as f:
+                    return f.read().strip()
+            except (UnicodeDecodeError, UnicodeError):
+                continue
+    return _FALLBACK_SYSTEM
 
 
 def build_prompt(case: dict) -> str:
@@ -57,12 +76,7 @@ def run(case_path: str) -> dict:
         chunks = ollama.chat(
             model=MODEL,
             messages=[
-                {"role": "system", "content": (
-                    "You are a department recommendation system. "
-                    "Respond ONLY with a valid JSON object containing exactly two keys: "
-                    "'scenario_id' (string) and 'recommended_departments' (array of strings). "
-                    "Do NOT include 'thought', 'reasoning', 'explanation', or any other keys."
-                )},
+                {"role": "system", "content": _load_system_prompt()},
                 {"role": "user", "content": prompt},
             ],
             format="json",
