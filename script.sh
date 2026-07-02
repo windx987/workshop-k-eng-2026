@@ -51,7 +51,7 @@ sys.stdout.buffer.write(dec)
 run_judge() {
     echo "=== Prompt Judge ==="
     if [ -f "$PROMPT_FILE" ]; then
-        prompt_eval=$("$PYTHON" prompt_judge.py "$PROMPT_FILE")
+        prompt_eval=$("$PYTHON" judge.py "$PROMPT_FILE")
         echo "$prompt_eval"
         prompt_score=$(echo "$prompt_eval" | "$PYTHON" -c "import sys,json; print(json.load(sys.stdin).get('total_score', 0))")
         echo ">> Prompt Quality Score: $prompt_score / 100"
@@ -80,8 +80,6 @@ case "$MODE" in
     judge)  run_judge ;;
     all)
         run_public
-        echo ""
-        run_hidden
         echo ""
         run_judge
         ;;

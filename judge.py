@@ -4,7 +4,7 @@ import ollama
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-MODEL = "gemma4:12b"
+MODEL = "gemma4:e2b"
 
 def evaluate_student_prompt(prompt_text: str) -> dict:
     judge_prompt = f"""You are an expert Prompt Engineering Evaluator.
@@ -62,7 +62,7 @@ Respond ONLY with a valid JSON object in this exact format. Do not include markd
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python prompt_judge.py <system_prompt.txt>", file=sys.stderr)
+        print("Usage: python judge.py <system_prompt.txt>", file=sys.stderr)
         sys.exit(1)
 
     with open(sys.argv[1], "rb") as f:
