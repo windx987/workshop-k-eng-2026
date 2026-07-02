@@ -252,6 +252,15 @@ Change `MODEL` in `main.py` from `"gemma4:12b"` to `"my-advisor"`, then run:
 gbash script.sh
 ```
 
+**5. Try your agent on extra scenarios:**
+
+`data/own_agent/S4.json` and `data/own_agent/S5.json` are two additional cases set aside for testing your own agent — they aren't part of the S1-S3 public set:
+
+```bash
+.venv/Scripts/python.exe main.py data/own_agent/S4.json
+.venv/Scripts/python.exe main.py data/own_agent/S5.json
+```
+
 > **Tip:** Every time you update `system_prompt.txt`, re-run steps 1–2 to rebuild the agent.
 
 <!-- ## Adding Test Cases

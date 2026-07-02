@@ -1,0 +1,7 @@
+{
+  "scenario_id": "P05",
+  "student_text": "หนูชอบวิชาศิลปะและตัดต่อรูปภาพนะ เวลาทำงานกลุ่มหนูจะรับหน้าที่ไดคัทรูป แต่งโทนสีคุมโทนไอจี ทำภาพกราฟิกประกอบตลอด วันหยุดชอบเล่นแอป Pinterest หาเรฟแต่งห้อง หรือดู YouTube ช่องแต่งหน้า รีวิวแฟชั่น แต่หนูเกลียดวิชาคณิตศาสตร์กับบัญชีมากค่ะ คิดเลขทีไรปวดหัวตลอด แถมหนูตัดต่อวิดีโอไม่เก่งนะ คอมค้างตลอด อ้อ... หนูไม่ชอบงานที่ต้องไปยืนพูดต่อหน้าคนเยอะๆ หรือออกไปตากแดดข้างนอก อยากนั่งทำกราฟิก แต่งรูปคุมโทนอยู่หน้าคอมในห้องแอร์เปิดเพลงฟังชิลๆ แนะนำคณะหน่อยค่ะ",
+  "allowed_departments": ["Digital Media", "Graphic Design", "Social Communication Innovation", "Accounting", "Civil Engineering"],
+  "max_suggestions": 3,
+  "gt_departments": ["Digital Media", "Graphic Design", "Social Communication Innovation"]
+}

@@ -251,4 +251,13 @@ gbash script.sh
 ollama run my-advisor
 ```
 
+**5. ลองใช้ agent กับเคสเพิ่มเติม:**
+
+`data/own_agent/S4.json` และ `data/own_agent/S5.json` เป็นเคสเพิ่มเติมสำหรับทดสอบ agent ของตัวเองโดยเฉพาะ ไม่ได้อยู่ในชุดเคสสาธารณะ S1-S3:
+
+```bash
+.venv/Scripts/python.exe main.py data/own_agent/S4.json
+.venv/Scripts/python.exe main.py data/own_agent/S5.json
+```
+
 > **เคล็ดลับ:** ทุกครั้งที่แก้ `system_prompt.txt` ให้รันขั้นตอนที่ 1–2 ใหม่เพื่อ rebuild agent
