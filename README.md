@@ -215,13 +215,20 @@ gbash script.sh judge
 
 Once you've written your `system_prompt.txt`, you can bake it into a custom Ollama model:
 
-**1. Generate a Modelfile from your system prompt:**
+**1. Create a Modelfile in VS Code:**
 
-```powershell
-$prompt = Get-Content system_prompt.txt -Raw
-$rule = "IMPORTANT: Respond ONLY with a valid JSON object. Do NOT include 'thought', 'reasoning', or any extra keys outside the JSON."
-"FROM gemma4:12b`nSYSTEM `"$prompt`n`n$rule`"" | Out-File -Encoding utf8 Modelfile
+In the project root, create a new file named `Modelfile` (no extension), then paste in the contents of your `system_prompt.txt`:
+
 ```
+FROM gemma4:12b
+SYSTEM """
+<paste the contents of your system_prompt.txt here>
+
+IMPORTANT: Respond ONLY with a valid JSON object. Do NOT include 'thought', 'reasoning', or any extra keys outside the JSON.
+"""
+```
+
+Save the file.
 
 **2. Create the agent:**
 

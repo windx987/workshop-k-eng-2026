@@ -208,13 +208,20 @@ gbash script.sh judge
 
 เมื่อเขียน `system_prompt.txt` เสร็จแล้ว สามารถสร้างเป็นโมเดล Ollama ของตัวเองได้:
 
-**1. สร้าง Modelfile จาก system prompt:**
+**1. สร้าง Modelfile ใน VS Code:**
 
-```powershell
-$prompt = Get-Content system_prompt.txt -Raw
-$rule = "IMPORTANT: Respond ONLY with a valid JSON object. Do NOT include 'thought', 'reasoning', or any extra keys outside the JSON."
-"FROM gemma4:12b`nSYSTEM `"$prompt`n`n$rule`"" | Out-File -Encoding utf8 Modelfile
+สร้างไฟล์ใหม่ชื่อ `Modelfile` (ไม่ต้องมีนามสกุล) ไว้ที่ root ของโปรเจกต์ แล้ววาง content จาก `system_prompt.txt` ของคุณลงไป:
+
 ```
+FROM gemma4:12b
+SYSTEM """
+<วาง content จาก system_prompt.txt ของคุณตรงนี้>
+
+IMPORTANT: Respond ONLY with a valid JSON object. Do NOT include 'thought', 'reasoning', or any extra keys outside the JSON.
+"""
+```
+
+แล้วบันทึกไฟล์
 
 **2. สร้าง agent:**
 
