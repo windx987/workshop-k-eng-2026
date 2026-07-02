@@ -219,13 +219,13 @@ $rule = "IMPORTANT: Respond ONLY with a valid JSON object. Do NOT include 'thoug
 **2. สร้าง agent:**
 
 ```powershell
-ollama create my-advisor -f Modelfile
+ollama create agent-007 -f Modelfile
 ```
 
 **3. ทดสอบ agent ใน chat mode:**
 
 ```powershell
-ollama run my-advisor
+ollama run agent-007
 ```
 
 ตัวอย่างการใช้งาน:
@@ -239,7 +239,7 @@ ollama run my-advisor
 
 **4. รัน evaluation ด้วย agent ของตัวเอง หรือคุยใน chat mode:**
 
-เปลี่ยน `MODEL` ใน `main.py` จาก `"gemma4:12b"` เป็น `"my-advisor"` แล้วรัน:
+เปลี่ยน `MODEL` ใน `main.py` จาก `"gemma4:12b"` เป็น `"agent-007"` แล้วรัน:
 
 ```powershell
 gbash script.sh
@@ -248,7 +248,7 @@ gbash script.sh
 หรือจะคุยกับ agent โดยตรง:
 
 ```powershell
-ollama run my-advisor
+ollama run agent-007
 ```
 
 **5. ลองใช้ agent กับเคสเพิ่มเติม:**

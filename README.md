@@ -226,13 +226,13 @@ $rule = "IMPORTANT: Respond ONLY with a valid JSON object. Do NOT include 'thoug
 **2. Create the agent:**
 
 ```powershell
-ollama create my-advisor -f Modelfile
+ollama create agent-007 -f Modelfile
 ```
 
 **3. Chat with your agent:**
 
 ```powershell
-ollama run my-advisor
+ollama run agent-007
 ```
 
 Example usage:
@@ -246,7 +246,7 @@ Example usage:
 
 **4. Run the evaluation using your agent:**
 
-Change `MODEL` in `main.py` from `"gemma4:12b"` to `"my-advisor"`, then run:
+Change `MODEL` in `main.py` from `"gemma4:12b"` to `"agent-007"`, then run:
 
 ```powershell
 gbash script.sh
