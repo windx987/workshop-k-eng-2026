@@ -236,6 +236,15 @@ ollama create my-advisor -f Modelfile
 ollama run my-advisor
 ```
 
+Example usage:
+
+```
+>>> {"scenario_id": "demo", "student_text": "I enjoy building mobile apps and solving algorithm puzzles.", "allowed_departments": ["Computer Science", "UX/UI Design", "Data Science", "Business Administration"], "max_suggestions": 2}
+{"scenario_id": "demo", "raw_output": "You clearly enjoy hands-on software work and analytical problem-solving...", "recommended_departments": ["Computer Science", "UX/UI Design"]}
+
+>>> /bye
+```
+
 **4. Run the evaluation using your agent:**
 
 Change `MODEL` in `main.py` from `"gemma4:12b"` to `"my-advisor"`, then run:

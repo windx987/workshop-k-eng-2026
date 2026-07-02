@@ -229,6 +229,15 @@ ollama create my-advisor -f Modelfile
 ollama run my-advisor
 ```
 
+ตัวอย่างการใช้งาน:
+
+```
+>>> {"scenario_id": "demo", "student_text": "I enjoy building mobile apps and solving algorithm puzzles.", "allowed_departments": ["Computer Science", "UX/UI Design", "Data Science", "Business Administration"], "max_suggestions": 2}
+{"scenario_id": "demo", "raw_output": "You clearly enjoy hands-on software work and analytical problem-solving...", "recommended_departments": ["Computer Science", "UX/UI Design"]}
+
+>>> /bye
+```
+
 **4. รัน evaluation ด้วย agent ของตัวเอง หรือคุยใน chat mode:**
 
 เปลี่ยน `MODEL` ใน `main.py` จาก `"gemma4:12b"` เป็น `"my-advisor"` แล้วรัน:
