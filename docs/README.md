@@ -186,8 +186,7 @@ gbash script.sh
 เลือก mode ที่ต้องการ:
 
 ```powershell
-gbash script.sh public   # เฉพาะเคสสาธารณะ (P01-P05)
-gbash script.sh hidden   # เฉพาะเคสซ่อน (P06-P10)
+gbash script.sh public   # เฉพาะเคสสาธารณะ (S1-S3)
 gbash script.sh judge    # ประเมิน prompt เท่านั้น
 ```
 

@@ -193,8 +193,7 @@ gbash script.sh
 Run a specific mode:
 
 ```powershell
-gbash script.sh public   # public cases only (P01-P05)
-gbash script.sh hidden   # hidden cases only (P06-P10)
+gbash script.sh public   # public cases only (S1-S3)
 gbash script.sh judge    # prompt judge only
 ```
 
