@@ -236,7 +236,7 @@ ollama run agent-007
 
 >>> /bye
 ```
-
+<!-- 
 **4. รัน evaluation ด้วย agent ของตัวเอง หรือคุยใน chat mode:**
 
 เปลี่ยน `MODEL` ใน `main.py` จาก `"gemma4:12b"` เป็น `"agent-007"` แล้วรัน:
@@ -260,4 +260,4 @@ ollama run agent-007
 .venv/Scripts/python.exe main.py data/own_agent/S5.json
 ```
 
-> **เคล็ดลับ:** ทุกครั้งที่แก้ `system_prompt.txt` ให้รันขั้นตอนที่ 1–2 ใหม่เพื่อ rebuild agent
+> **เคล็ดลับ:** ทุกครั้งที่แก้ `system_prompt.txt` ให้รันขั้นตอนที่ 1–2 ใหม่เพื่อ rebuild agent -->
