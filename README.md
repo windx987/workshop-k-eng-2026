@@ -243,7 +243,7 @@ Example usage:
 
 >>> /bye
 ```
-
+<!-- 
 **4. Run the evaluation using your agent:**
 
 Change `MODEL` in `main.py` from `"gemma4:12b"` to `"agent-007"`, then run:
@@ -261,7 +261,7 @@ gbash script.sh
 .venv/Scripts/python.exe main.py data/own_agent/S5.json
 ```
 
-> **Tip:** Every time you update `system_prompt.txt`, re-run steps 1–2 to rebuild the agent.
+> **Tip:** Every time you update `system_prompt.txt`, re-run steps 1–2 to rebuild the agent. -->
 
 <!-- ## Adding Test Cases
 
