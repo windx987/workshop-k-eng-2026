@@ -3,7 +3,7 @@ import json
 import os
 import ollama
 
-MODEL = "gemma4:12b"
+MODEL = "gemma4:e2b"
 
 _FALLBACK_SYSTEM = (
     "You are a department recommendation system. "

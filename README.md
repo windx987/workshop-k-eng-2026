@@ -18,11 +18,11 @@ data/*.json  →  main.py  →  Ollama (gemma4:12b)  →  eval.py  →  score (0
 
 ## Local LLM
 
-### Install Ollama
+<!-- ### Install Ollama
 
 ```powershell
 irm https://ollama.com/install.ps1 | iex
-```
+``` -->
 
 Open a **new** PowerShell window after installation, then verify:
 
@@ -32,25 +32,25 @@ ollama --version
 
 ### Start Ollama and pull the model
 
-**Default** — download from Ollama registry:
+<!-- **Default** — download from Ollama registry:
 
 ```powershell
 ollama pull gemma4:12b
 ollama serve
-```
+``` -->
 
-The model is ~7.6 GB. If the download fails mid-way, re-run `ollama pull gemma4:12b` — Ollama resumes partial downloads.
+<!-- The model is ~7.6 GB. If the download fails mid-way, re-run `ollama pull gemma4:12b` — Ollama resumes partial downloads. -->
 
-**Local** — first, copy your Ollama models into the project:
+<!-- **Local** — first, copy your Ollama models into the project:
 
 ```powershell
 Copy-Item -Recurse "$env:USERPROFILE\.ollama\models" .\models
-```
+``` -->
 
-Then serve from the local directory:
+<!-- Then serve from the local directory: -->
 
 ```powershell
-$env:OLLAMA_MODELS = ".\models"
+$env:OLLAMA_MODELS = ".\ollama"
 ollama serve
 ```
 
@@ -81,7 +81,7 @@ Hello! How can I help you today? 😊
 >>> /bye
 ```
 
-If the model responds, the local LLM is ready.
+<!-- If the model responds, the local LLM is ready.
 
 ## Installation
 
@@ -91,7 +91,7 @@ Git Bash is required to run `script.sh`.
 
 ```powershell
 winget install --id Git.Git --exact --source winget --silent --disable-interactivity --accept-source-agreements --accept-package-agreements
-```
+``` -->
 
 Open a **new** PowerShell window after installation, then verify:
 
@@ -101,28 +101,30 @@ git --version
 
 Set up a `gbash` alias for Git Bash:
 
-```powershell
+<!-- ```powershell
 Set-Alias gbash "C:\Program Files\Git\bin\bash.exe"
+gbash --version
+```
+> **Note:** This alias only lasts for the current terminal session. Run `Set-Alias` again if you open a new PowerShell window. -->
+
+<!-- for Workshop's ECC 704:  -->
+
+```powershell
+Set-Alias gbash "$env:LOCALAPPDATA\Programs\Git\bin\bash.exe"
 gbash --version
 ```
 > **Note:** This alias only lasts for the current terminal session. Run `Set-Alias` again if you open a new PowerShell window.
 
-for Workshop's ECC 704: 
-
-```powershell
-Set-Alias gbash "$env:LOCALAPPDATA\Programs\Git\bin\bash.exe"
-```
-
-### 2. Clone the repository
+<!-- ### 2. Clone the repository
 
 Open **PowerShell** or **Git Bash** (search in the Start menu):
 
 ```powershell
 git clone https://github.com/windx987/workshop-k-eng-2026.git
 cd ./workshop-k-eng-2026
-```
+``` -->
 
-### 3. Install Python 3.12 (optional)
+<!-- ### 3. Install Python 3.12 (optional)
 
 Check if Python is already installed:
 
@@ -149,24 +151,28 @@ If `python` is still not found, add these to your user PATH via **Settings → S
 %USERPROFILE%\AppData\Local\Programs\Python\Python312\Scripts
 ```
 
-Then open a new terminal and re-check.
+Then open a new terminal and re-check. -->
 
-### 4. Create the virtual environment and install dependencies
+<!-- ### 4. Create the virtual environment and install dependencies
 
 ```bash
 python -m venv .venv
 .venv/Scripts/pip.exe install -r requirements.txt
-```
+``` -->
 
-### 5. Verify the setup
+<!-- ### 5. Verify the setup
 
 ```bash
 .venv/Scripts/python.exe main.py data/S1.json
 ```
 
-You should see JSON output with `recommended_departments`. If so, the setup is complete.
+You should see JSON output with `recommended_departments`. If so, the setup is complete. -->
 
 ## Jump Start
+
+```powershell
+cd /Desktop/workshop-k-eng-2026/github
+```
 
 Run this in PowerShell to create a starter `system_prompt.txt`:
 
